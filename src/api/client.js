@@ -1,0 +1,30 @@
+import axios from 'axios';
+
+const hostname = window.location.hostname;
+const apiHost = hostname === 'localhost' || hostname === '127.0.0.1' ? 'localhost' : hostname;
+
+export const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || `http://${apiHost}:5050/api`,
+});
+
+API.interceptors.request.use((config) => {
+  const token = localStorage.getItem('divo_token');
+  if (token) config.headers.Authorization = `Bearer ${token}`;
+  return config;
+});
+
+API.interceptors.response.use(
+  (res) => res,
+  (error) => {
+    if (error.response?.status === 401) {
+      localStorage.removeItem('divo_token');
+      localStorage.removeItem('divo_admin');
+      if (window.location.pathname !== '/login') window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
+);
+
+export function errorMessage(err) {
+  return err?.response?.data?.message || 'حدث خطأ غير متوقع، حاول مرة أخرى';
+}
