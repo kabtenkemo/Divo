@@ -93,10 +93,6 @@ export default function Login() {
             </>
           )}
         </button>
-
-        <div className="hint">
-          الحساب الافتراضي: <b>admin</b> / <b>admin123</b>
-        </div>
       </form>
     </div>
   );

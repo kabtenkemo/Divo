@@ -3,8 +3,12 @@ import axios from 'axios';
 const hostname = window.location.hostname;
 const apiHost = hostname === 'localhost' || hostname === '127.0.0.1' ? 'localhost' : hostname;
 
+const PROD_API_URL = 'https://madares-alahad.runasp.net/api';
+
 export const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || `http://${apiHost}:5050/api`,
+  baseURL:
+    import.meta.env.VITE_API_URL ||
+    (import.meta.env.PROD ? PROD_API_URL : `http://${apiHost}:5050/api`),
 });
 
 API.interceptors.request.use((config) => {
