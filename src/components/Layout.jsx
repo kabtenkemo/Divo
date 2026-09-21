@@ -1,5 +1,6 @@
+import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { Cloud, Home, Layers, LogOut, Moon, PartyPopper, QrCode, Rainbow, ShieldCheck, Smile, Star, Sun, Users } from 'lucide-react';
+import { Cloud, Home, Layers, LogOut, Menu, Moon, PartyPopper, QrCode, Rainbow, ShieldCheck, Smile, Star, Sun, Users, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 
@@ -15,6 +16,7 @@ export default function Layout() {
   const { admin, logout } = useAuth();
   const { theme, toggle } = useTheme();
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -40,7 +42,16 @@ export default function Layout() {
           </div>
         </div>
 
-        <nav className="nav">
+        <button
+          className="burger"
+          onClick={() => setOpen((o) => !o)}
+          aria-label="القائمة"
+          aria-expanded={open}
+        >
+          {open ? <X size={24} /> : <Menu size={24} />}
+        </button>
+
+        <nav className={`nav${open ? ' open' : ''}`} onClick={(e) => { if (e.target.closest('a, button[title]')) setOpen(false); }}>
           <NavLink to="/" end>
             <Home size={18} /> الرئيسية
           </NavLink>
