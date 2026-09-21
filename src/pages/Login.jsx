@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { KeyRound, Moon, PartyPopper, Smile, Rocket, Star, Sun, User } from 'lucide-react';
+import { KeyRound, Mail, Moon, PartyPopper, Smile, Rocket, Star, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { errorMessage } from '../api/client';
 import { useToast } from '../context/ToastContext';
@@ -20,19 +20,19 @@ export default function Login() {
   const { theme, toggle } = useTheme();
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [busy, setBusy] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!username.trim() || !password) {
-      push('يرجى إدخال اسم المستخدم وكلمة المرور', 'error');
+    if (!email.trim() || !password) {
+      push('يرجى إدخال البريد الإلكتروني وكلمة المرور', 'error');
       return;
     }
     setBusy(true);
     try {
-      await login(username.trim(), password);
+      await login(email.trim(), password);
       navigate('/');
     } catch (err) {
       push(errorMessage(err), 'error');
@@ -61,14 +61,16 @@ export default function Login() {
 
         <div className="field">
           <label>
-            <User size={15} /> اسم المستخدم
+            <Mail size={15} /> البريد الإلكتروني
           </label>
           <input
             className="input"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="admin"
-            autoComplete="username"
+            type="email"
+            inputMode="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="name@example.com"
+            autoComplete="email"
           />
         </div>
 

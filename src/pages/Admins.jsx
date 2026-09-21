@@ -12,7 +12,6 @@ export default function Admins() {
   const [loading, setLoading] = useState(true);
 
   const [name, setName] = useState('');
-  const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('Admin');
   const [saving, setSaving] = useState(false);
@@ -30,17 +29,16 @@ export default function Admins() {
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !username.trim()) {
-      push('يرجى ملء الاسم واسم المستخدم', 'error');
+    if (!name.trim() || !email.trim()) {
+      push('يرجى ملء الاسم والبريد الإلكتروني', 'error');
       return;
     }
     setSaving(true);
     try {
-      await API.post('/admins', { name, username, email, role });
+      await API.post('/admins', { name, email, role });
       push('تمت إضافة المشرف بنجاح');
       setShowForm(false);
       setName('');
-      setUsername('');
       setEmail('');
       setRole('Admin');
       load();
@@ -85,8 +83,7 @@ export default function Admins() {
               <tr>
                 <th>#</th>
                 <th>الاسم</th>
-                <th>اسم المستخدم</th>
-                <th>البريد</th>
+                <th>البريد الإلكتروني</th>
                 <th>الدور</th>
                 <th>تاريخ الإضافة</th>
                 <th></th>
@@ -97,8 +94,7 @@ export default function Admins() {
                 <tr key={a.id}>
                   <td>{a.id}</td>
                   <td>{a.name}</td>
-                  <td>@{a.username}</td>
-                  <td>{a.email || '—'}</td>
+                  <td>{a.email}</td>
                   <td>
                     <span className={`chip ${a.role === 'SuperAdmin' ? 'active' : ''}`}>
                       {a.role === 'SuperAdmin' ? (
@@ -140,12 +136,8 @@ export default function Admins() {
               <input className="input" value={name} onChange={(e) => setName(e.target.value)} placeholder="مثال: محمد أحمد" />
             </div>
             <div className="field">
-              <label>اسم المستخدم</label>
-              <input className="input" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username" />
-            </div>
-            <div className="field">
               <label>
-                <Mail size={15} style={{ verticalAlign: 'middle' }} /> البريد الإلكتروني (اختياري)
+                <Mail size={15} style={{ verticalAlign: 'middle' }} /> البريد الإلكتروني
               </label>
               <input className="input" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="name@school.com" />
             </div>

@@ -14,8 +14,8 @@ function readStoredAdmin() {
 export function AuthProvider({ children }) {
   const [admin, setAdmin] = useState(readStoredAdmin);
 
-  const login = useCallback(async (username, password) => {
-    const { data } = await API.post('/auth/login', { username, password });
+  const login = useCallback(async (email, password) => {
+    const { data } = await API.post('/auth/login', { email, password });
     localStorage.setItem('divo_token', data.token);
     localStorage.setItem('divo_admin', JSON.stringify(data.admin));
     setAdmin(data.admin);
