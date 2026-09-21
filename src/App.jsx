@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import Students from './pages/Students';
 import StudentProfile from './pages/StudentProfile';
 const Scan = lazy(() => import('./pages/Scan'));
+const GuestScan = lazy(() => import('./pages/GuestScan'));
 import Admins from './pages/Admins';
 import QrCards from './pages/QrCards';
 
@@ -30,6 +31,14 @@ export default function App() {
   return (
     <Routes>
       <Route path="/login" element={isAuthenticated ? <Navigate to="/" replace /> : <Login />} />
+      <Route
+        path="/guest"
+        element={
+          <Suspense fallback={<Loader />}>
+            <GuestScan />
+          </Suspense>
+        }
+      />
       <Route
         path="/"
         element={

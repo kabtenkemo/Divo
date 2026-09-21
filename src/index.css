@@ -488,6 +488,23 @@ table.tbl { width: 100%; border-collapse: collapse; }
 }
 .login-card .logo { width: 108px; height: 108px; margin-bottom: 8px; }
 .login-tagline { color: var(--muted); font-weight: 700; margin-bottom: 24px; }
+
+/* ---------- guest (no-login) scan ---------- */
+.guest-wrap {
+  min-height: 100vh; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; padding: 24px 16px; gap: 20px;
+}
+.guest-head { display: flex; align-items: center; gap: 12px; text-align: start; }
+.guest-head img { width: 48px; height: 48px; }
+.guest-head b { display: block; font-size: 20px; color: var(--coral-strong); line-height: 1.1; }
+.guest-head small { color: var(--muted); font-weight: 700; font-size: 12px; }
+.guest-card { width: 100%; max-width: 430px; text-align: center; }
+.guest-card h2 { font-size: 26px; margin-top: 14px; }
+.guest-badge {
+  display: inline-flex; align-items: center; gap: 6px; font-weight: 800;
+  color: var(--grape); background: var(--cream-2); padding: 6px 14px;
+  border-radius: 999px; margin-bottom: 16px;
+}
 .hint {
   margin-top: 20px; font-size: 13px; color: var(--muted); font-weight: 700;
   background: var(--cream-2); border-radius: var(--r-sm); padding: 10px;

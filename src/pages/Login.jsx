@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { KeyRound, Mail, Moon, PartyPopper, Smile, Rocket, Star, Sun } from 'lucide-react';
+import { KeyRound, Mail, Moon, PartyPopper, QrCode, Smile, Rocket, Star, Sun } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { errorMessage } from '../api/client';
 import { useToast } from '../context/ToastContext';
@@ -94,6 +94,15 @@ export default function Login() {
               <Rocket size={20} /> دخول
             </>
           )}
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-ghost btn-lg btn-block"
+          style={{ marginTop: 12 }}
+          onClick={() => navigate('/guest')}
+        >
+          <QrCode size={20} /> مسح طالب بدون تسجيل دخول
         </button>
       </form>
     </div>
