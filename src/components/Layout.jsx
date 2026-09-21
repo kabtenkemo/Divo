@@ -3,6 +3,7 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom';
 import { Cloud, Home, Layers, LogOut, Menu, Moon, PartyPopper, QrCode, Rainbow, ShieldCheck, Smile, Star, Sun, Users, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
+import ChangePasswordModal from './ChangePasswordModal';
 
 const DECOS = [
   { cls: 'deco-1', Icon: Star, color: 'var(--sun)' },
@@ -81,6 +82,8 @@ export default function Layout() {
       <main className="main">
         <Outlet />
       </main>
+
+      {admin?.mustChangePassword && <ChangePasswordModal />}
     </div>
   );
 }

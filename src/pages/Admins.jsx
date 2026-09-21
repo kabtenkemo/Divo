@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Crown, KeyRound, Mail, Plus, Settings, ShieldCheck, Trash2, User, UserCog } from 'lucide-react';
+import { Crown, Info, Mail, Plus, Settings, ShieldCheck, Trash2, User, UserCog } from 'lucide-react';
 import { API, errorMessage } from '../api/client';
 import { useToast } from '../context/ToastContext';
 import Modal from '../components/Modal';
@@ -14,7 +14,6 @@ export default function Admins() {
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
   const [role, setRole] = useState('Admin');
   const [saving, setSaving] = useState(false);
 
@@ -31,19 +30,18 @@ export default function Admins() {
 
   const submit = async (e) => {
     e.preventDefault();
-    if (!name.trim() || !username.trim() || !password) {
-      push('يرجى ملء الاسم واسم المستخدم وكلمة المرور', 'error');
+    if (!name.trim() || !username.trim()) {
+      push('يرجى ملء الاسم واسم المستخدم', 'error');
       return;
     }
     setSaving(true);
     try {
-      await API.post('/admins', { name, username, email, password, role });
+      await API.post('/admins', { name, username, email, role });
       push('تمت إضافة المشرف بنجاح');
       setShowForm(false);
       setName('');
       setUsername('');
       setEmail('');
-      setPassword('');
       setRole('Admin');
       load();
     } catch (err) {
@@ -153,12 +151,6 @@ export default function Admins() {
             </div>
             <div className="field">
               <label>
-                <KeyRound size={15} style={{ verticalAlign: 'middle' }} /> كلمة المرور
-              </label>
-              <input className="input" type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" />
-            </div>
-            <div className="field">
-              <label>
                 <Settings size={15} style={{ verticalAlign: 'middle' }} /> الدور
               </label>
               <select className="select" value={role} onChange={(e) => setRole(e.target.value)}>
@@ -166,6 +158,10 @@ export default function Admins() {
                 <option value="SuperAdmin">مدير عام (يستطيع إدارة المشرفين)</option>
               </select>
             </div>
+            <p className="hint" style={{ marginTop: 0 }}>
+              <Info size={15} style={{ verticalAlign: 'middle' }} /> كلمة المرور الافتراضية للمشرف الجديد
+              هي <b>admin</b> — وسيُطلب منه تغييرها عند أول تسجيل دخول.
+            </p>
             <div className="row center">
               <button className="btn btn-ghost" type="button" onClick={() => setShowForm(false)}>
                 إلغاء
