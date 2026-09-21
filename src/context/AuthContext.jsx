@@ -35,15 +35,22 @@ export function AuthProvider({ children }) {
     return data;
   }, []);
 
+  const updateProfile = useCallback(async (payload) => {
+    const { data } = await API.put('/admins/me', payload);
+    localStorage.setItem('divo_admin', JSON.stringify(data));
+    setAdmin(data);
+    return data;
+  }, []);
+
   const isAuthenticated = !!localStorage.getItem('divo_token') && !!admin;
 
   return (
-    <AuthContext.Provider value={{ admin, login, logout, changePassword, isAuthenticated }}>
+    <AuthContext.Provider value={{ admin, login, logout, changePassword, updateProfile, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
   );
 }
 
 export function useAuth() {
-  return useContext(AuthContext) ?? { admin: null, isAuthenticated: false, login: async () => null, logout: () => {}, changePassword: async () => null };
+  return useContext(AuthContext) ?? { admin: null, isAuthenticated: false, login: async () => null, logout: () => {}, changePassword: async () => null, updateProfile: async () => null };
 }

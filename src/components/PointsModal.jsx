@@ -69,7 +69,7 @@ export default function PointsModal({ student, mode, onApplied, onClose }) {
         points: isAdd ? amount : -amount,
         reason: reason.trim(),
       });
-      push(isAdd ? `تمت إضافة ${amount} نجمة` : `تم خصم ${amount} نجمة`);
+      push(isAdd ? `تمت إضافة ${amount} وزنة` : `تم خصم ${amount} وزنة`);
       onApplied(data);
       onClose();
     } catch (err) {
@@ -95,7 +95,7 @@ export default function PointsModal({ student, mode, onApplied, onClose }) {
     >
       <form onSubmit={submit}>
         <div className="field">
-          <label>عدد النجوم</label>
+          <label>عدد الوزنات</label>
           <div className="stepper">
             <button type="button" onClick={() => change(-1)} aria-label="نقص">
               −
@@ -146,11 +146,11 @@ export default function PointsModal({ student, mode, onApplied, onClose }) {
               <span className="spinner" />
             ) : isAdd ? (
               <>
-                <Plus size={18} /> إضافة {amount} نجمة
+                <Plus size={18} /> إضافة {amount} وزنة
               </>
             ) : (
               <>
-                <Minus size={18} /> حذف {amount} نجمة
+                <Minus size={18} /> حذف {amount} وزنة
               </>
             )}
           </button>

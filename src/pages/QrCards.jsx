@@ -69,7 +69,7 @@ export default function QrCards() {
           <div>
             <h3 style={{ margin: 0 }}>توليد بطاقات QR فارغة</h3>
             <p style={{ color: 'var(--muted)', fontWeight: 700, margin: '4px 0 0' }}>
-              بطاقات غير مربوطّة بأي طالب حتى الآن — اطبعها ووزّعها، وعند المسح يُسجّل الطالب ويرتبط بالرمز تلقائياً.
+              بطاقات غير مربوطّة بأي طفل حتى الآن — اطبعها ووزّعها، وعند المسح يُسجّل الطفل ويرتبط بالرمز تلقائياً.
             </p>
           </div>
           <div className="qr-gen">
@@ -133,10 +133,10 @@ export default function QrCards() {
               </div>
             </div>
             <div className="id-content">
-              <div className="id-photo">صورة الطالب</div>
+              <div className="id-photo">صورة الطفل</div>
               <div className="id-fields">
                 <div className="id-field">
-                  <span className="f-label">اسم الطالب</span>
+                  <span className="f-label">اسم الطفل</span>
                   <span className="f-line" />
                 </div>
                 <div className="id-field">

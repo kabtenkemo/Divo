@@ -56,8 +56,8 @@ export default function Login() {
 
       <form className="login-card" onSubmit={submit}>
         <img className="logo" src="/logo.png" alt="شعار Divo" />
-        <h1 style={{ color: 'var(--coral-strong)', fontSize: 30 }}>مرحباً بك في نجوم!</h1>
-        <p className="login-tagline">سجّل الدخول لإدارة نقاط طلابك</p>
+        <h1 style={{ color: 'var(--coral-strong)', fontSize: 30 }}>مرحباً بك في وزنات!</h1>
+        <p className="login-tagline">سجّل الدخول لإدارة نقاط أطفالك</p>
 
         <div className="field">
           <label>
@@ -102,7 +102,7 @@ export default function Login() {
           style={{ marginTop: 12 }}
           onClick={() => navigate('/guest')}
         >
-          <QrCode size={20} /> مسح طالب بدون تسجيل دخول
+          <QrCode size={20} /> مسح طفل بدون تسجيل دخول
         </button>
       </form>
     </div>

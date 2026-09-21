@@ -30,7 +30,7 @@ export default function StudentFormModal({ student, classes, onSaved, onClose, q
   const submit = async (e) => {
     e.preventDefault();
     if (!name.trim() || !finalClass.trim()) {
-      push('يرجى إدخال اسم الطالب والفصل', 'error');
+      push('يرجى إدخال اسم الطفل والفصل', 'error');
       return;
     }
     setSaving(true);
@@ -41,7 +41,7 @@ export default function StudentFormModal({ student, classes, onSaved, onClose, q
           className: finalClass.trim(),
           photoBase64: photo || null,
         });
-        push('تم تحديث بيانات الطالب');
+        push('تم تحديث بيانات الطفل');
         onSaved(data);
       } else {
         const { data } = await API.post('/students', {
@@ -50,7 +50,7 @@ export default function StudentFormModal({ student, classes, onSaved, onClose, q
           photoBase64: photo || null,
           ...(linkingQr ? { qrCode } : {}),
         });
-        push(linkingQr ? 'تم ربط الطالب بهذا الرمز بنجاح' : 'تمت إضافة الطالب بنجاح');
+        push(linkingQr ? 'تم ربط الطفل بهذا الرمز بنجاح' : 'تمت إضافة الطفل بنجاح');
         onSaved(data);
       }
     } catch (err) {
@@ -75,7 +75,7 @@ export default function StudentFormModal({ student, classes, onSaved, onClose, q
           ) : (
             <Sparkles size={20} color="var(--sun)" />
           )}
-          {student ? 'تعديل طالب' : linkingQr ? 'ربط QR بطالب جديد' : 'إضافة طالب جديد'}
+          {student ? 'تعديل طفل' : linkingQr ? 'ربط QR بطفل جديد' : 'إضافة طفل جديد'}
         </span>
       }
       onClose={onClose}
@@ -85,14 +85,14 @@ export default function StudentFormModal({ student, classes, onSaved, onClose, q
           <div className="qr-info">
             <QrCode size={20} color="var(--grape)" style={{ flex: 'none' }} />
             <span>
-              سيُربط الطالب بهذا الرمز:
+              سيُربط الطفل بهذا الرمز:
               <b dir="ltr" style={{ display: 'block', direction: 'ltr', textAlign: 'start' }}>{qrCode}</b>
             </span>
           </div>
         )}
         <div className="field">
           <label>
-            <User size={15} style={{ verticalAlign: 'middle' }} /> اسم الطالب
+            <User size={15} style={{ verticalAlign: 'middle' }} /> اسم الطفل
           </label>
           <input
             className="input"
@@ -174,7 +174,7 @@ export default function StudentFormModal({ student, classes, onSaved, onClose, q
               </>
             ) : (
               <>
-                <Plus size={18} /> إضافة الطالب
+                <Plus size={18} /> إضافة الطفل
               </>
             )}
           </button>

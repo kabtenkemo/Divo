@@ -32,7 +32,7 @@ export default function Scan() {
       if (err?.response?.status === 404) {
         const clean = code.trim().toUpperCase().slice(0, 64);
         setPendingCode(clean);
-        push('هذا الرمز غير مسجّل — يمكنك إضافة بيانات الطالب وربطه بهذا الرمز', 'success');
+        push('هذا الرمز غير مسجّل — يمكنك إضافة بيانات الطفل وربطه بهذا الرمز', 'success');
       } else {
         push(`تعذر الاتصال: ${errorMessage(err)}`, 'error');
         setTimeout(() => startScanner(), 1800);
@@ -102,7 +102,7 @@ export default function Scan() {
       <>
         <div className="page-head">
           <h1 className="page-title">
-            <PartyPopper size={30} color="var(--sun)" /> تم العثور على الطالب!
+            <PartyPopper size={30} color="var(--sun)" /> تم العثور على الطفل!
           </h1>
         </div>
 
@@ -186,7 +186,7 @@ export default function Scan() {
           </div>
           <p style={{ fontWeight: 800, fontSize: 18 }}>هذا الرمز QR ليس مسجّلاً في النظام بعد.</p>
           <p style={{ color: 'var(--muted)', fontWeight: 700 }}>
-            أضف بيانات الطالب وسيُربط الطالب بهذا الرمز مباشرة:
+            أضف بيانات الطفل وسيُربط الطفل بهذا الرمز مباشرة:
           </p>
           <div className="qr-info" style={{ justifyContent: 'center', textAlign: 'center' }}>
             <QrCode size={20} color="var(--grape)" style={{ flex: 'none' }} />
@@ -195,7 +195,7 @@ export default function Scan() {
 
           <div className="row center" style={{ gap: 12 }}>
             <button className="btn btn-grape btn-lg" onClick={() => setRegisterOpen(true)}>
-              <UserPlus size={18} /> تسجيل طالب جديد بهذا الرمز
+              <UserPlus size={18} /> تسجيل طفل جديد بهذا الرمز
             </button>
             <button className="btn btn-ghost" onClick={backToScan}>
               <RotateCcw size={16} /> مسح رمز آخر
@@ -225,7 +225,7 @@ export default function Scan() {
         <h1 className="page-title">
           <QrCode size={30} color="var(--sky)" /> مسح رمز QR
         </h1>
-        <span className="chip active">وجّه الكاميرا نحو بطاقة الطالب</span>
+        <span className="chip active">وجّه الكاميرا نحو بطاقة الطفل</span>
       </div>
 
       <div className="card" style={{ maxWidth: 640, margin: '0 auto' }}>

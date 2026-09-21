@@ -505,6 +505,14 @@ table.tbl { width: 100%; border-collapse: collapse; }
   color: var(--grape); background: var(--cream-2); padding: 6px 14px;
   border-radius: 999px; margin-bottom: 16px;
 }
+
+.welcome-line { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-weight: 700; }
+.welcome-edit {
+  border: 0; background: var(--cream-2); color: var(--muted); width: 28px; height: 28px;
+  border-radius: 50%; display: inline-flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: .15s;
+}
+.welcome-edit:hover { color: var(--ink); transform: scale(1.08); }
 .hint {
   margin-top: 20px; font-size: 13px; color: var(--muted); font-weight: 700;
   background: var(--cream-2); border-radius: var(--r-sm); padding: 10px;
@@ -694,6 +702,34 @@ table.tbl { width: 100%; border-collapse: collapse; }
   gap: 18px;
   align-items: start;
 }
+
+.grid-account {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  align-items: start;
+}
+.account-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+.account-avatar {
+  position: relative; width: 96px; height: 96px; border-radius: 50%;
+  overflow: hidden; cursor: pointer; flex: none;
+  border: 3px dashed var(--grape); background: var(--cream-2);
+  display: block;
+}
+.account-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.account-avatar-edit {
+  position: absolute; inset-inline-end: 0; bottom: 0;
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--grape); color: #fff;
+  display: grid; place-items: center;
+  box-shadow: 0 4px 10px rgba(61,43,65,.2);
+}
+.account-role {
+  display: inline-flex; align-items: center; font-weight: 900; font-size: 20px;
+  color: var(--grape); margin-bottom: 4px;
+}
+.nav-avatar { width: 22px; height: 22px; border-radius: 50%; object-fit: cover; vertical-align: middle; }
+
 .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .table-scroll table { min-width: 640px; }
 
@@ -813,6 +849,7 @@ table.tbl { width: 100%; border-collapse: collapse; }
   .nav .btn-ghost { justify-content: flex-start; }
 
   .grid-profile { grid-template-columns: 1fr; }
+  .grid-account { grid-template-columns: 1fr; }
   .stat-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .stat { min-height: 100px; padding: 16px; }
   .stat .num { font-size: 28px; }

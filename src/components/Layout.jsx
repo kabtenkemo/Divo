@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router-dom';
-import { Cloud, Home, Layers, LogOut, Menu, Moon, PartyPopper, QrCode, Rainbow, ShieldCheck, Smile, Star, Sun, Users, X } from 'lucide-react';
+import { Cloud, Home, Layers, LogOut, Menu, Moon, PartyPopper, QrCode, Rainbow, ShieldCheck, Smile, Star, Sun, UserCog, Users, X } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
 import ChangePasswordModal from './ChangePasswordModal';
@@ -57,7 +57,7 @@ export default function Layout() {
             <Home size={18} /> الرئيسية
           </NavLink>
           <NavLink to="/students">
-            <Users size={18} /> الطلاب
+            <Users size={18} /> الأطفال
           </NavLink>
           <NavLink to="/scan">
             <QrCode size={18} /> مسح QR
@@ -67,9 +67,17 @@ export default function Layout() {
           </NavLink>
           {admin?.role === 'SuperAdmin' && (
             <NavLink to="/admins">
-              <ShieldCheck size={18} /> المشرفون
+              <ShieldCheck size={18} /> المدرسون
             </NavLink>
           )}
+          <NavLink to="/account">
+            {admin?.photoBase64 ? (
+              <img className="nav-avatar" src={admin.photoBase64} alt={admin.name} />
+            ) : (
+              <UserCog size={18} />
+            )}{' '}
+            حسابي
+          </NavLink>
           <button className="theme-toggle" onClick={toggle} title={theme === 'dark' ? 'الوضع النهاري' : 'الوضع الليلي'}>
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
           </button>

@@ -43,7 +43,7 @@ export default function Students() {
   }, []);
 
   const handleDelete = async (student) => {
-    if (!window.confirm(`هل تريد حذف الطالب «${student.name}»؟ سيتم حذف كل نقاطه.`)) return;
+    if (!window.confirm(`هل تريد حذف الطفل «${student.name}»؟ سيتم حذف كل نقاطه.`)) return;
     try {
       await API.delete(`/students/${student.id}`);
       push(`تم حذف ${student.name}`);
@@ -57,10 +57,10 @@ export default function Students() {
     <>
       <div className="page-head">
         <h1 className="page-title">
-          <Users size={30} color="var(--coral)" /> الطلاب
+          <Users size={30} color="var(--coral)" /> الأطفال
         </h1>
         <button className="btn btn-coral" onClick={() => setShowForm(true)}>
-          <Plus size={18} /> إضافة طالب
+          <Plus size={18} /> إضافة طفل
         </button>
       </div>
 
@@ -75,7 +75,7 @@ export default function Students() {
             <input
               className="input"
               style={{ paddingInlineEnd: 44 }}
-              placeholder="ابحث عن طالب…"
+              placeholder="ابحث عن طفل…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
@@ -102,14 +102,14 @@ export default function Students() {
           <div className="big-ico">
             <Sparkles size={58} color="var(--sky)" />
           </div>
-          جارٍ تحميل الطلاب…
+          جارٍ تحميل الأطفال…
         </div>
       ) : students.length === 0 ? (
         <div className="empty">
           <div className="big-ico">
             <Users size={64} color="var(--sun)" />
           </div>
-          {search || activeClass ? 'لا توجد نتائج مطابقة' : 'لا يوجد طلاب بعد، أضف أول طالب!'}
+          {search || activeClass ? 'لا توجد نتائج مطابقة' : 'لا يوجد أطفال بعد، أضف أول طفل!'}
         </div>
       ) : (
         <div className="grid-students">

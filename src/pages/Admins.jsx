@@ -36,7 +36,7 @@ export default function Admins() {
     setSaving(true);
     try {
       await API.post('/admins', { name, email, role });
-      push('تمت إضافة المشرف بنجاح');
+      push('تمت إضافة المدرس بنجاح');
       setShowForm(false);
       setName('');
       setEmail('');
@@ -50,10 +50,10 @@ export default function Admins() {
   };
 
   const remove = async (admin) => {
-    if (!window.confirm(`هل تريد حذف المشرف «${admin.name}»؟`)) return;
+    if (!window.confirm(`هل تريد حذف المدرس «${admin.name}»؟`)) return;
     try {
       await API.delete(`/admins/${admin.id}`);
-      push('تم حذف المشرف');
+      push('تم حذف المدرس');
       load();
     } catch (err) {
       push(errorMessage(err), 'error');
@@ -64,10 +64,10 @@ export default function Admins() {
     <>
       <div className="page-head">
         <h1 className="page-title">
-          <ShieldCheck size={30} color="var(--grape)" /> إدارة المشرفين
+          <ShieldCheck size={30} color="var(--grape)" /> إدارة المدرسين
         </h1>
         <button className="btn btn-grape" onClick={() => setShowForm(true)}>
-          <Plus size={18} /> إضافة مشرف جديد
+          <Plus size={18} /> إضافة مدرس جديد
         </button>
       </div>
 
@@ -75,7 +75,7 @@ export default function Admins() {
         {loading ? (
           <div className="empty">جارٍ التحميل…</div>
         ) : admins.length === 0 ? (
-          <div className="empty">لا يوجد مشرفون</div>
+          <div className="empty">لا يوجد مدرسون</div>
         ) : (
           <div className="table-scroll">
             <table className="tbl">
@@ -103,7 +103,7 @@ export default function Admins() {
                         </>
                       ) : (
                         <>
-                          <UserCog size={15} /> مشرف
+                          <UserCog size={15} /> مدرس
                         </>
                       )}
                     </span>
@@ -127,7 +127,7 @@ export default function Admins() {
       </div>
 
       {showForm && (
-        <Modal title="إضافة مشرف جديد" onClose={() => setShowForm(false)}>
+        <Modal title="إضافة مدرس جديد" onClose={() => setShowForm(false)}>
           <form onSubmit={submit}>
             <div className="field">
               <label>
@@ -146,12 +146,12 @@ export default function Admins() {
                 <Settings size={15} style={{ verticalAlign: 'middle' }} /> الدور
               </label>
               <select className="select" value={role} onChange={(e) => setRole(e.target.value)}>
-                <option value="Admin">مشرف</option>
-                <option value="SuperAdmin">مدير عام (يستطيع إدارة المشرفين)</option>
+                <option value="Admin">مدرس</option>
+                <option value="SuperAdmin">مدير عام (يستطيع إدارة المدرسين)</option>
               </select>
             </div>
             <p className="hint" style={{ marginTop: 0 }}>
-              <Info size={15} style={{ verticalAlign: 'middle' }} /> كلمة المرور الافتراضية للمشرف الجديد
+              <Info size={15} style={{ verticalAlign: 'middle' }} /> كلمة المرور الافتراضية للمدرس الجديد
               هي <b>admin</b> — وسيُطلب منه تغييرها عند أول تسجيل دخول.
             </p>
             <div className="row center">

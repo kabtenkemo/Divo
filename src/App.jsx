@@ -10,6 +10,7 @@ const Scan = lazy(() => import('./pages/Scan'));
 const GuestScan = lazy(() => import('./pages/GuestScan'));
 import Admins from './pages/Admins';
 import QrCards from './pages/QrCards';
+import Account from './pages/Account';
 
 function Loader() {
   return (
@@ -60,6 +61,7 @@ export default function App() {
         />
         <Route path="admins" element={<Admins />} />
         <Route path="qrcards" element={<QrCards />} />
+        <Route path="account" element={<Account />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

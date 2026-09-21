@@ -166,12 +166,12 @@ export default function GuestScan() {
 
           <p className="hint" style={{ marginTop: 16, textAlign: 'center' }}>
             <Star size={15} fill="currentColor" strokeWidth={0} style={{ verticalAlign: 'middle' }} /> وجّه
-            الكاميرا نحو بطاقة الطالب لعرض الاسم والنقاط فقط.
+            الكاميرا نحو بطاقة الطفل لعرض الاسم والنقاط فقط.
           </p>
 
           <div style={{ textAlign: 'center', marginTop: 12 }}>
             <Link className="btn btn-ghost" to="/login">
-              <LogIn size={16} /> تسجيل الدخول كمشرف
+              <LogIn size={18} /> تسجيل الدخول
             </Link>
           </div>
         </div>

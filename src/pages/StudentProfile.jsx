@@ -43,10 +43,10 @@ export default function StudentProfile() {
         <div className="big-ico">
           <Ghost size={64} color="var(--grape)" />
         </div>
-        الطالب غير موجود
+        الطفل غير موجود
         <div style={{ marginTop: 14 }}>
           <button className="btn btn-coral" onClick={() => navigate('/students')}>
-            <ArrowRight size={18} /> العودة للطلاب
+            <ArrowRight size={18} /> العودة للأطفال
           </button>
         </div>
       </div>
@@ -71,7 +71,7 @@ export default function StudentProfile() {
     <>
       <div className="no-print">
         <button className="link" onClick={() => navigate('/students')} style={{ marginBottom: 14 }}>
-        <ArrowRight size={16} style={{ verticalAlign: 'middle' }} /> العودة لقائمة الطلاب
+        <ArrowRight size={16} style={{ verticalAlign: 'middle' }} /> العودة لقائمة الأطفال
       </button>
 
       <div className="grid-profile">
@@ -93,7 +93,7 @@ export default function StudentProfile() {
           </div>
           <div className="kv">
             <span className="k">
-              <Hash size={15} style={{ verticalAlign: 'middle' }} /> رقم الطالب
+              <Hash size={15} style={{ verticalAlign: 'middle' }} /> رقم الطفل
             </span>
             <span className="v">{`#${student.id}`}</span>
           </div>
@@ -119,7 +119,7 @@ export default function StudentProfile() {
 
         <div className="card" style={{ textAlign: 'center' }}>
           <div className="card-title" style={{ justifyContent: 'center' }}>
-            <QrCode size={20} color="var(--grape)" /> بطاقة الطالب (QR)
+            <QrCode size={20} color="var(--grape)" /> بطاقة الطفل (QR)
           </div>
           <p style={{ color: 'var(--muted)', fontWeight: 700, fontSize: 13 }}>
             اطبعها وامسحها من شاشة «مسح QR» لإضافة أو خصم النقاط
@@ -144,7 +144,7 @@ export default function StudentProfile() {
             <div className="big-ico">
               <Inbox size={60} color="var(--mint)" />
             </div>
-            لا توجد معاملات بعد… امنح أول نجمة!
+            لا توجد معاملات بعد… امنح أول وزنة!
           </div>
         ) : (
           <ul className="timeline">
@@ -158,7 +158,7 @@ export default function StudentProfile() {
                     {t.reason} · <b>{Math.abs(t.points)}</b> نقطة
                   </div>
                   <div className="t-meta">
-                    <span>المشرف: {t.adminName}</span>
+                    <span>المدرس: {t.adminName}</span>
                     <span>{formatDateTime(t.createdAt)}</span>
                   </div>
                 </div>
@@ -204,11 +204,11 @@ export default function StudentProfile() {
           </div>
           <div className="id-content">
             <div className="id-photo">
-              {student.photoBase64 ? <img src={student.photoBase64} alt={student.name} /> : 'صورة الطالب'}
+              {student.photoBase64 ? <img src={student.photoBase64} alt={student.name} /> : 'صورة الطفل'}
             </div>
             <div className="id-fields">
               <div className="id-field">
-                <span className="f-label">اسم الطالب</span>
+                <span className="f-label">اسم الطفل</span>
                 <span className="f-value">{student.name}</span>
               </div>
               <div className="id-field">
@@ -217,7 +217,7 @@ export default function StudentProfile() {
               </div>
               <div className="id-field">
                 <span className="f-label">النقاط</span>
-                <span className="f-value">{student.points} نجمة</span>
+                <span className="f-value">{student.points} وزنة</span>
               </div>
             </div>
             <div className="id-sep" />
