@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Backpack, Eye, Plus, Search, Sparkles, Trash2, Users } from 'lucide-react';
+import { QRCodeCanvas } from 'qrcode.react';
+import { Backpack, Eye, Plus, Printer, Search, Sparkles, Trash2, Users } from 'lucide-react';
 import { API, errorMessage } from '../api/client';
 import { useToast } from '../context/ToastContext';
 import StudentFormModal from '../components/StudentFormModal';
@@ -53,15 +54,22 @@ export default function Students() {
     }
   };
 
+  const handlePrint = () => window.print();
+
   return (
     <>
       <div className="page-head">
         <h1 className="page-title">
           <Users size={30} color="var(--coral)" /> الأطفال
         </h1>
-        <button className="btn btn-coral" onClick={() => setShowForm(true)}>
-          <Plus size={18} /> إضافة طفل
-        </button>
+        <div className="row" style={{ gap: 8 }}>
+          <button className="btn btn-sun" onClick={handlePrint} disabled={!students.length}>
+            <Printer size={18} /> طباعة الكروت
+          </button>
+          <button className="btn btn-coral" onClick={() => setShowForm(true)}>
+            <Plus size={18} /> إضافة طفل
+          </button>
+        </div>
       </div>
 
       <div className="card" style={{ marginBottom: 20 }}>
@@ -148,6 +156,48 @@ export default function Students() {
           onClose={() => setShowForm(false)}
         />
       )}
+
+      <div className="print-area print-cards" aria-hidden="true">
+        {students.map((s) => (
+          <div key={`p-${s.id}`} className="idcard">
+            <div className="id-top-band">
+              <div className="band-logo-wrap">
+                <img className="band-logo" src="/logo.png" alt="Divo" />
+              </div>
+              <div>
+                <div className="band-school">مدارس الأحد</div>
+                <div className="band-sub">كنيسة الإيمان ابن الحكم · نظام النقاط</div>
+              </div>
+            </div>
+            <div className="id-content">
+              <div className="id-photo">
+                {s.photoBase64 ? <img src={s.photoBase64} alt={s.name} /> : 'صورة الطفل'}
+              </div>
+              <div className="id-fields">
+                <div className="id-field">
+                  <span className="f-label">اسم الطفل</span>
+                  <span className="f-value">{s.name}</span>
+                </div>
+                <div className="id-field">
+                  <span className="f-label">الفصل</span>
+                  <span className="f-value">الفصل {s.className}</span>
+                </div>
+                <div className="id-field">
+                  <span className="f-label">النقاط</span>
+                  <span className="f-value">{s.points} وزنة</span>
+                </div>
+              </div>
+              <div className="id-sep" />
+              <div className="id-qr">
+                <div className="qr-frame">
+                  <QRCodeCanvas value={s.qrCode} size={110} level="H" includeMargin={false} />
+                </div>
+                <div className="qr-code">{s.qrCode}</div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </>
   );
 }
