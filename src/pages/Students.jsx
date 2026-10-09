@@ -58,6 +58,7 @@ export default function Students() {
 
   return (
     <>
+      <div className="no-print">
       <div className="page-head">
         <h1 className="page-title">
           <Users size={30} color="var(--coral)" /> الأطفال
@@ -156,6 +157,7 @@ export default function Students() {
           onClose={() => setShowForm(false)}
         />
       )}
+      </div>
 
       <div className="print-area print-cards" aria-hidden="true">
         {students.map((s) => (
