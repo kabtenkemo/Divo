@@ -564,19 +564,22 @@ table.tbl { width: 100%; border-collapse: collapse; }
   .main { padding: 0 !important; max-width: none !important; overflow: visible !important; }
 
   .print-area {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: block;
   }
+  .print-area > .idcard { margin: 0 auto; }
   .print-cards {
-    display: flex !important;
-    flex-wrap: wrap;
-    gap: 7mm;
-    padding: 1mm;
-    align-items: flex-start;
-    justify-content: flex-start;
+    display: block !important;
+    padding: 0;
   }
-  .print-cards .idcard { margin: 0; }
+  .print-cards .idcard {
+    margin: 0 auto;
+    page-break-after: always;
+    break-after: page;
+  }
+  .print-cards .idcard:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
 
   .idcard {
     width: 86mm;
