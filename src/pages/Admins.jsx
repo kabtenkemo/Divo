@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import { Crown, Info, Mail, Plus, Settings, ShieldCheck, Trash2, User, UserCog } from 'lucide-react';
+import { Crown, Info, Mail, Plus, RefreshCw, Settings, ShieldCheck, Trash2, User, UserCog } from 'lucide-react';
 import { API, errorMessage } from '../api/client';
 import { useToast } from '../context/ToastContext';
 import Modal from '../components/Modal';
@@ -60,6 +60,22 @@ export default function Admins() {
     }
   };
 
+  const resetPassword = async (admin) => {
+    if (
+      !window.confirm(
+        `هل تريد إعادة تعيين كلمة مرور المدرس «${admin.name}» إلى كلمة المرور الافتراضية (admin)؟\nسيُطلب منه تغيير كلمة المرور عند تسجيل الدخول التالي.`
+      )
+    )
+      return;
+    try {
+      await API.post(`/admins/${admin.id}/reset-password`);
+      push('تم إعادة تعيين كلمة المرور إلى الافتراضية');
+      load();
+    } catch (err) {
+      push(errorMessage(err), 'error');
+    }
+  };
+
   return (
     <>
       <div className="page-head">
@@ -110,6 +126,14 @@ export default function Admins() {
                   </td>
                   <td>{formatDate(a.createdAt)}</td>
                   <td>
+                    <button
+                      className="btn btn-ghost btn-sm"
+                      onClick={() => resetPassword(a)}
+                      title="إعادة تعيين كلمة المرور إلى الافتراضية"
+                      style={{ color: 'var(--grape)' }}
+                    >
+                      <RefreshCw size={15} />
+                    </button>
                     <button
                       className="btn btn-ghost btn-sm"
                       onClick={() => remove(a)}
